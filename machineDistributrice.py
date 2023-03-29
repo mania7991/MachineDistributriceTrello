@@ -173,6 +173,7 @@ def verifier_disponibilite_produit(machine_distributrice : dict, code_produit : 
     return (obtenir_quantite_produit(machine_distributrice, code_produit) > 0)
 
 
+
 #############################################################
 # SECTION 3 : DÉFINITION DES FONCTIONS QUE VOUS DEVEZ CODER #
 #             Vous devez, par vous-mêmes, compléter le code #

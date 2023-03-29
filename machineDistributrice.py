@@ -174,52 +174,6 @@ def verifier_disponibilite_produit(machine_distributrice : dict, code_produit : 
 
 
 
-#############################################################
-# SECTION 3 : DÉFINITION DES FONCTIONS QUE VOUS DEVEZ CODER #
-#             Vous devez, par vous-mêmes, compléter le code #
-#             des fonctions ci-dessous.                     #
-#############################################################
-
-def modifier_quantite_produit(machine_distributrice : dict, code_produit : str, quantite : int) :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
-def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
-def saisir_code_produit(machine_distributrice : dict) -> str :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
-def distribuer_produit(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
-def payer_produit(machine_distributrice : dict, code_produit : str) :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
-def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
-def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> float :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
-def remettre_argent(code_produit : str, montant_fourni : float) :
-    # VOUS DEVEZ CODER PAR VOUS-MÊMES CETTE FONCTION (effacez le mot "pass" et écrivez votre code)
-    pass
-
-
 ##########################################################
 # SECTION 4 : EXÉCUTION PRINCIPALE ("MAIN") DU PROGRAMME #
 #             Vous ne devez en aucun cas modifier le     #

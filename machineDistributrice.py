@@ -102,7 +102,7 @@ def remplir_machine_distributrice(machine_distributrice : dict) :
 def trouver_largeurs_colonnes(liste_largeurs_colonnes : list, machine_distributrice : dict) :
     for colonne in range(NB_COLONNES) :
         largeur_colonne_max = 0
-
+        
         for ligne in machine_distributrice :
             largeur_colonne_courante = len(machine_distributrice[ligne][colonne]["nom"])
 
@@ -174,6 +174,74 @@ def verifier_disponibilite_produit(machine_distributrice : dict, code_produit : 
 
 
 
+
+
+
+
+#############################################################
+# SECTION 3 : DÉFINITION DES FONCTIONS QUE VOUS DEVEZ CODER #
+#             Vous devez, par vous-mêmes, compléter le code #
+#             des fonctions ci-dessous.                     #
+#############################################################
+
+is_payed = False
+
+#Anthony
+def modifier_quantite_produit(machine_distributrice : dict, code_produit : str, quantite : int) :
+    if (quantite > 0) :
+        machine_distributrice[code_produit[0]][int(code_produit[1:]) - 1]['quantite'] = quantite - 1
+    
+
+#Ryan
+def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
+    pass
+
+#Ryan
+def saisir_code_produit(machine_distributrice : dict) -> str :
+    pass
+
+#Anthony
+def distribuer_produit(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
+    afficher_details_produit(machine_distributrice, code_produit)
+   
+    if is_payed == True :
+        ENTER_Input = input("Distribution du produit en cours...")
+        while not ENTER_Input == "":
+            input() 
+
+#Ryan
+def payer_produit(machine_distributrice : dict, code_produit : str) :
+    pass
+
+#Ryan
+def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
+    pass
+
+#Anthony
+def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> float :
+    pass
+
+#Anthony
+def remettre_argent(code_produit : str, montant_fourni : float) :
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##########################################################
 # SECTION 4 : EXÉCUTION PRINCIPALE ("MAIN") DU PROGRAMME #
 #             Vous ne devez en aucun cas modifier le     #
@@ -186,10 +254,28 @@ if __name__ == "__main__" :
     
     # Dans la console, appuyez sur les touches [CTRL] et [C]
     # pour arrêter cette boucle infinie et, donc, l'exécution
-    # du programme.
+    # du programme. 
     while True :
-        code_produit = choisir_produit(machine_distributrice)
-        montant_fourni = payer_produit(machine_distributrice, code_produit)
-        distribuer_produit(machine_distributrice, code_produit, montant_fourni)
-        remettre_argent(code_produit, montant_fourni)
-        afficher_remerciements(machine_distributrice, code_produit)
+        is_payed = True
+        afficher_contenu_machine_distributrice(machine_distributrice)
+        distribuer_produit(machine_distributrice, "B3", 4)
+        input()
+        # remettre_argent(code_produit, montant_fourni)
+        # afficher_remerciements(machine_distributrice, code_produit)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ########################Original############################
+        # code_produit = choisir_produit(machine_distributrice)
+        # montant_fourni = payer_produit(machine_distributrice, code_produit)
+        # distribuer_produit(machine_distributrice, code_produit, montant_fourni)
+        # remettre_argent(code_produit, montant_fourni)
+        # afficher_remerciements(machine_distributrice, code_produit)
+        ############################################################

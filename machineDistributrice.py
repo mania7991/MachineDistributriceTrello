@@ -194,16 +194,18 @@ def modifier_quantite_produit(machine_distributrice : dict, code_produit : str, 
 
 #Ryan
 def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
-    pass
+            if code_produit == True :
+             a = afficher_details_produit(machine_distributrice, "B3")
+            print(a)
 
 #Ryan
 def saisir_code_produit(machine_distributrice : dict) -> str :
-    pass
+    input("Entrez le code du produit, svp :")
 
 #Anthony
 def distribuer_produit(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
     afficher_details_produit(machine_distributrice, code_produit)
-   
+    
     if is_payed == True :
         ENTER_Input = input("Distribution du produit en cours...")
         while not ENTER_Input == "":
@@ -211,11 +213,15 @@ def distribuer_produit(machine_distributrice : dict, code_produit : str, montant
 
 #Ryan
 def payer_produit(machine_distributrice : dict, code_produit : str) :
-    pass
+    payment_mode = code_produit + machine_distributrice
+    print("Vous pouvez proceder au paiement.")
 
 #Ryan
 def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
-    pass
+    touche_enfoncee = input("appuyez sur ENTER, svp :")
+    if touche_enfoncee :
+        count = montant_fourni
+        return count
 
 #Anthony
 def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> float :

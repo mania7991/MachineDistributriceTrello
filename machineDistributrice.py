@@ -1,5 +1,6 @@
 from os import name, system
 from random import uniform, randint, shuffle
+import time
 
 
 #######################################################
@@ -185,43 +186,70 @@ def verifier_disponibilite_produit(machine_distributrice : dict, code_produit : 
 #############################################################
 
 is_payed = False
+code_produit = input("Veuillez saisir le code de votre produit : ")
 
 #Anthony
 def modifier_quantite_produit(machine_distributrice : dict, code_produit : str, quantite : int) :
     if (quantite > 0) :
         machine_distributrice[code_produit[0]][int(code_produit[1:]) - 1]['quantite'] = quantite - 1
-    
-
-#Ryan
-def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
-            if code_produit == True :
-             a = afficher_details_produit(machine_distributrice, "B3")
-            print(a)
-
+        
+        
+    #Ryan
+             
 #Ryan
 def saisir_code_produit(machine_distributrice : dict) -> str :
-    input("Entrez le code du produit, svp :")
-
+            global code_produit
+            verifier_disponibilite_produit(machine_distributrice, code_produit)        
+            while not code_produit.isalnum():
+                       code_produit = input("Veuillez saisir le code de votre produit : ")
+            if code_produit.isalnum():
+                        print("Ce produit est disponible.")
+              
+#Ryan
+def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
+        b = ""
+        c =""
+        d = ""
+        b = obtenir_nom_produit(machine_distributrice, code_produit)
+        c = obtenir_prix_produit(machine_distributrice, code_produit)
+        d = obtenir_quantite_produit(machine_distributrice, code_produit)
+        print(f"Nom du produit : {b}"), print(f"Prix unitaire : {c}"), print(f"Quantite restante : {d}")
+                
 #Anthony
 def distribuer_produit(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
     afficher_details_produit(machine_distributrice, code_produit)
+    saisir_code_produit(machine_distributrice)
     
     if is_payed == True :
+        Activation = print("Appuyez 2 fois sur la touche ENTER pour continuer : ")
+        Activation
         ENTER_Input = input("Distribution du produit en cours...")
         while not ENTER_Input == "":
-            input() 
+            input()
+    pass
+
 
 #Ryan
 def payer_produit(machine_distributrice : dict, code_produit : str) :
-    payment_mode = code_produit + machine_distributrice
-    print("Vous pouvez proceder au paiement.")
+    a = afficher_details_produit(machine_distributrice, code_produit)
+    print(a)
+    print("Vous pouvez proceder au paiement...")
+
+    
+    
 
 #Ryan
 def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
-    touche_enfoncee = input("appuyez sur ENTER, svp :")
-    if touche_enfoncee :
-        count = montant_fourni
-        return count
+    c = obtenir_prix_produit(machine_distributrice, code_produit)
+    time.sleep(1.5)
+    touche_enfoncee = input("Faites entrer le montant en votre possession : ")
+    if float(touche_enfoncee) >0 and  float(touche_enfoncee) == c:
+        montant_fourni = touche_enfoncee
+        print(f"Montant inséré : {montant_fourni}")
+    if float(touche_enfoncee) >0 and  float(touche_enfoncee) < c:
+        print(f"Montant inséré insuffisant : {montant_fourni}")
+    
+
 
 #Anthony
 def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> float :
@@ -230,20 +258,6 @@ def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> 
 #Anthony
 def remettre_argent(code_produit : str, montant_fourni : float) :
     pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -261,26 +275,26 @@ if __name__ == "__main__" :
     # Dans la console, appuyez sur les touches [CTRL] et [C]
     # pour arrêter cette boucle infinie et, donc, l'exécution
     # du programme. 
-    while True :
+    i = 0
+    while True and i == 0 :
+        i +=1
         is_payed = True
         afficher_contenu_machine_distributrice(machine_distributrice)
-        distribuer_produit(machine_distributrice, "B3", 4)
-        input()
+        #distribuer_produit(machine_distributrice, code_produit,montant_fourni)
+        #input()
         # remettre_argent(code_produit, montant_fourni)
         # afficher_remerciements(machine_distributrice, code_produit)
+       
         
         
         
         
         
-        
-        
-        
-        
-        
-        ########################Original############################
-        # code_produit = choisir_produit(machine_distributrice)
-        # montant_fourni = payer_produit(machine_distributrice, code_produit)
+    
+    ########################Original############################
+        saisir_code_produit(machine_distributrice)
+        montant_fourni = payer_produit(machine_distributrice, code_produit)
+        inserer_argent(machine_distributrice, montant_fourni)
         # distribuer_produit(machine_distributrice, code_produit, montant_fourni)
         # remettre_argent(code_produit, montant_fourni)
         # afficher_remerciements(machine_distributrice, code_produit)

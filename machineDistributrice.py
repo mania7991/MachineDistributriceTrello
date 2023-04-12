@@ -201,15 +201,14 @@ def modifier_quantite_produit(machine_distributrice : dict, code_produit : str, 
 #Ryan
 
 def saisir_code_produit(machine_distributrice : dict) -> str :
-    global code_produit
-    verifier_disponibilite_produit(machine_distributrice, code_produit)
+    code_produit = input("Veuillez saisir le code de votre produit : ")
     if not code_produit.isalnum():
                        code_produit = input("Veuillez saisir le code de votre produit : ")
     while verifier_disponibilite_produit == False :
                        code_produit = input("Veuillez saisir le code de votre produit : ")
     if code_produit.isalnum():
                         print("Ce produit est disponible.")
-              
+    return code_produit  
 #Ryan
 def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
         b = ""
@@ -272,6 +271,40 @@ def remettre_argent(code_produit : str, montant_fourni : float) :
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##########################################################
 # SECTION 4 : EXÉCUTION PRINCIPALE ("MAIN") DU PROGRAMME #
 #             Vous ne devez en aucun cas modifier le     #
@@ -302,11 +335,11 @@ if __name__ == "__main__" :
         
     
     ########################Original############################
-        code_produit = input("Veuillez saisir le code de votre produit : ")
-        saisir_code_produit(machine_distributrice)
-        montant_fourni = payer_produit(machine_distributrice, code_produit)
-        #inserer_argent(machine_distributrice, montant_fourni)
-        # distribuer_produit(machine_distributrice, code_produit, montant_fourni)
-        # remettre_argent(code_produit, montant_fourni)
-        # afficher_remerciements(machine_distributrice, code_produit)
+#code_produit = input("Veuillez saisir le code de votre produit : ")
+code_produit = saisir_code_produit(machine_distributrice)
+montant_fourni = payer_produit(machine_distributrice, code_produit)
+#inserer_argent(machine_distributrice, montant_fourni)
+# distribuer_produit(machine_distributrice, code_produit, montant_fourni)
+# remettre_argent(code_produit, montant_fourni)
+# afficher_remerciements(machine_distributrice, code_produit)
         ############################################################

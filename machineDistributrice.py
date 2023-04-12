@@ -215,11 +215,11 @@ def payer_produit(machine_distributrice : dict, code_produit : str) :
 
 #Ryan
 def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
-    pass
-
+    return montant_inséré = 0
+    
 #Anthony
 def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> float :
-    pass
+    
 
 #Anthony
 def remettre_argent(code_produit : str, montant_fourni : float) :

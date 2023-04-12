@@ -192,10 +192,7 @@ is_payed = False
 def modifier_quantite_produit(machine_distributrice : dict, code_produit : str, quantite : int) :
     if (quantite > 0) :
         machine_distributrice[code_produit[0]][int(code_produit[1:]) - 1]['quantite'] = quantite - 1
-        
-        
-    #Ryan
-
+   
 
 
 #Ryan
@@ -208,7 +205,8 @@ def saisir_code_produit(machine_distributrice : dict) -> str :
                        code_produit = input("Veuillez saisir le code de votre produit : ")
     if code_produit.isalnum():
                         print("Ce produit est disponible.")
-    return code_produit  
+    return code_produit
+  
 #Ryan
 def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
         b = ""
@@ -231,14 +229,15 @@ def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
     if touche_enfoncee == "C": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[2]} $")
     if touche_enfoncee == "V": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[3]} $")
     if touche_enfoncee == "B": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[4]} $")
-    montant_fourni = input("Faites entrer le montant en votre possession : ")
+    montant_fourni = input("Entrer le montant en votre possession : ")
     print(f"Montant inseree : {montant_fourni} $")
+    return montant_fourni
 
 #Ryan
 def payer_produit(machine_distributrice : dict, code_produit : str) :
-    inserer_argent(touche_enfoncee="", montant_fourni="")
+    montant_fourni = inserer_argent(touche_enfoncee="", montant_fourni=0)
     c = float(obtenir_prix_produit(machine_distributrice, code_produit))
-    montant_fourni = input("Rentrer encore le montant : ")
+    #montant_fourni = input("Rentrer encore le montant : ")
     if float(montant_fourni) < float(c):
         effacer_ecran(), afficher_details_produit(machine_distributrice, code_produit)
         print(f"\nMontant inseree : {montant_fourni} $")
@@ -249,15 +248,12 @@ def payer_produit(machine_distributrice : dict, code_produit : str) :
 #Anthony
 def distribuer_produit(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
     afficher_details_produit(machine_distributrice, code_produit)
-    saisir_code_produit(machine_distributrice)                          #Desolee, Ryan a touchee
+    #saisir_code_produit(machine_distributrice)                          #Desolee, Ryan a touchee
     
     if is_payed == True :
-        Activation = print("Appuyez 2 fois sur la touche ENTER pour continuer : ")
-        Activation
-        ENTER_Input = input("Distribution du produit en cours...")
-        while not ENTER_Input == "":
-            input()
-    pass                                                                                                           #Desolee, Ryan a touchee
+        time.sleep(1.5)
+        print("Distribution du produit en cours...")
+                                                                                    
 
 
 #Anthony
@@ -339,7 +335,7 @@ if __name__ == "__main__" :
 code_produit = saisir_code_produit(machine_distributrice)
 montant_fourni = payer_produit(machine_distributrice, code_produit)
 #inserer_argent(machine_distributrice, montant_fourni)
-# distribuer_produit(machine_distributrice, code_produit, montant_fourni)
+distribuer_produit(machine_distributrice, code_produit, montant_fourni)
 # remettre_argent(code_produit, montant_fourni)
 # afficher_remerciements(machine_distributrice, code_produit)
         ############################################################

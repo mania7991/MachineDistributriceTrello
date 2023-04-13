@@ -210,7 +210,7 @@ def saisir_code_produit(machine_distributrice : dict) -> str :
 #Ryan
 def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
         b = ""
-        c =""
+        c = ""
         d = ""
         b = obtenir_nom_produit(machine_distributrice, code_produit)
         c = obtenir_prix_produit(machine_distributrice, code_produit)
@@ -244,6 +244,10 @@ def payer_produit(machine_distributrice : dict, code_produit : str) :
     if float(montant_fourni) >= float(c):
         time.sleep(1.5)
         print("initialisation de la machine...")
+    return montant_fourni    
+    
+
+
 
 #Anthony
 def distribuer_produit(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
@@ -258,12 +262,36 @@ def distribuer_produit(machine_distributrice : dict, code_produit : str, montant
 
 #Anthony
 def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> float :
-    pass
+
+    for i in MONNAIES_ACCEPTABLES:
+        nombre_monnaie = 0
+        while argent_a_rendre - i >= 0 and i < argent_a_rendre:
+            argent_a_rendre = argent_a_rendre - i
+            
+            nombre_monnaie = nombre_monnaie +1
+        liste_monnaies_rendues.append(nombre_monnaie)
+            
+    print(liste_monnaies_rendues)
+            
+
+
+
+
 
 #Anthony
-def remettre_argent(code_produit : str, montant_fourni : float) :
-    pass
-
+def remettre_argent(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
+    effacer_ecran()
+    print(f"Montant inséré :",montant_fourni,"$")
+    
+    c = float(obtenir_prix_produit(machine_distributrice, code_produit))
+    argent_a_rendre = round(float(montant_fourni) - c, 2)
+    print(f"Argent à rendre :",argent_a_rendre,"$")
+    
+    calculer_monnaie(argent_a_rendre, liste_monnaies_rendues=[])
+    
+    for i in range(len(liste_monnaies_rendues)):
+        print(f"")
+        
 
 
 
@@ -336,6 +364,6 @@ code_produit = saisir_code_produit(machine_distributrice)
 montant_fourni = payer_produit(machine_distributrice, code_produit)
 #inserer_argent(machine_distributrice, montant_fourni)
 distribuer_produit(machine_distributrice, code_produit, montant_fourni)
-# remettre_argent(code_produit, montant_fourni)
+remettre_argent(machine_distributrice, code_produit, montant_fourni)
 # afficher_remerciements(machine_distributrice, code_produit)
         ############################################################

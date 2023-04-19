@@ -223,28 +223,38 @@ def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
 def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
     b = obtenir_nom_produit(machine_distributrice, code_produit)
     print(f"Vous pouvez proceder au paiement du {b}...")
-    touche_enfoncee = input("Frapper sur une des lettres Z, X, C, V, B, svp...\n sinon, appuyez sur ENTER : ")
-    if touche_enfoncee == "Z": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[0]} $")
-    if touche_enfoncee == "X": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[1]} $")
-    if touche_enfoncee == "C": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[2]} $")
-    if touche_enfoncee == "V": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[3]} $")
-    if touche_enfoncee == "B": print(f"Le montant doit etre augmentee de {MONNAIES_ACCEPTABLES[4]} $")
-    montant_fourni = input("Entrer le montant en votre possession : ")
-    print(f"Montant inseree : {montant_fourni} $")
+    montant_fourni_ = []
+    touche_enfoncee = input("Frapper sur une de ces lettres \n Z:B:2.00, X:1.00, C:0.25, V:0.10, B:0.05, svp : ")
+    if touche_enfoncee == "Z": 
+        print(f" Somme entree : {MONNAIES_ACCEPTABLES[0]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
+    if touche_enfoncee == "X": 
+        print(f" Somme entree : {MONNAIES_ACCEPTABLES[1]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
+    if touche_enfoncee == "C": 
+        print(f" Somme entree : {MONNAIES_ACCEPTABLES[2]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
+    if touche_enfoncee == "V": 
+        print(f" Somme entree : {MONNAIES_ACCEPTABLES[3]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
+    if touche_enfoncee == "B": 
+        print(f" Somme entree : {MONNAIES_ACCEPTABLES[4]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
+    montant_fourni = montant_fourni_
     return montant_fourni
 
 #Ryan
 def payer_produit(machine_distributrice : dict, code_produit : str) :
-    montant_fourni = inserer_argent(touche_enfoncee="", montant_fourni=0)
+    inserer_argent(touche_enfoncee="", montant_fourni="")
     c = float(obtenir_prix_produit(machine_distributrice, code_produit))
-    #montant_fourni = input("Rentrer encore le montant : ")
+   # -----------------------------------------
+    touche_enfoncee = inserer_argent(touche_enfoncee="", montant_fourni="")
+    Price = (c) -  float(touche_enfoncee)
+    print(f"Somme entree : {touche_enfoncee} $")
+    montant_fourni = touche_enfoncee
     if float(montant_fourni) < float(c):
         effacer_ecran(), afficher_details_produit(machine_distributrice, code_produit)
         print(f"\nMontant inseree : {montant_fourni} $")
+        input(f"Il vous reste {Price} a payer : ")
     if float(montant_fourni) >= float(c):
         time.sleep(1.5)
         print("initialisation de la machine...")
-    return montant_fourni    
+   # -----------------------------------------
     
 
 

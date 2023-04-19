@@ -196,14 +196,10 @@ def modifier_quantite_produit(machine_distributrice : dict, code_produit : str, 
 
 
 #Ryan
-
 def saisir_code_produit(machine_distributrice : dict) -> str :
     code_produit = input("Veuillez saisir le code de votre produit : ")
     if not code_produit.isalnum():
         code_produit = input("Veuillez saisir le code de votre produit : ")
-    
-    
-    #!# Cette boucle while va générer une boucle infinie #!#
     
     while verifier_disponibilite_produit == False :
         code_produit = input("Veuillez saisir le code de votre produit : ")
@@ -231,7 +227,7 @@ def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
     b = obtenir_nom_produit(machine_distributrice, code_produit)
     print(f"Vous pouvez proceder au paiement du {b}...")
     montant_fourni_ = []
-    touche_enfoncee = input("Frapper sur une de ces lettres \n Z:B:2.00, X:1.00, C:0.25, V:0.10, B:0.05, svp : ")
+    touche_enfoncee = input("Frapper sur une de ces lettres \n Z:2.00, X:1.00, C:0.25, V:0.10, B:0.05, svp : ")
     if touche_enfoncee == "Z": 
         print(f" Somme entree : {MONNAIES_ACCEPTABLES[0]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
     if touche_enfoncee == "X": 
@@ -249,15 +245,7 @@ def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
 def payer_produit(machine_distributrice : dict, code_produit : str) :
     inserer_argent(touche_enfoncee="", montant_fourni="")
     c = float(obtenir_prix_produit(machine_distributrice, code_produit))
-<<<<<<< HEAD
    
-=======
-   # -----------------------------------------
-    touche_enfoncee = inserer_argent(touche_enfoncee="", montant_fourni="")
-    Price = (c) -  float(touche_enfoncee)
-    print(f"Somme entree : {touche_enfoncee} $")
-    montant_fourni = touche_enfoncee
->>>>>>> refs/remotes/origin/main
     if float(montant_fourni) < float(c):
         effacer_ecran(), afficher_details_produit(machine_distributrice, code_produit)
         print(f"\nMontant inseree : {montant_fourni} $")
@@ -265,14 +253,9 @@ def payer_produit(machine_distributrice : dict, code_produit : str) :
     if float(montant_fourni) >= float(c):
         
         print("initialisation de la machine...")
-<<<<<<< HEAD
         time.sleep(5)
     return montant_fourni    
-=======
-   # -----------------------------------------
->>>>>>> refs/remotes/origin/main
     
-
 
 
 #Anthony
@@ -296,65 +279,44 @@ def calculer_monnaie(argent_a_rendre : float, liste_monnaies_rendues : list) -> 
             nombre_monnaie = nombre_monnaie +1
         liste_monnaies_rendues.append(nombre_monnaie)
             
-    print(liste_monnaies_rendues)
     return liste_monnaies_rendues       
-
-
-
 
 
 #Anthony
 def remettre_argent(machine_distributrice : dict, code_produit : str, montant_fourni : float) :
     #Affichage
     effacer_ecran()
-    print(f"Montant inséré :",montant_fourni,"$")
+    
+    print(f"Montant inséré  :",montant_fourni,"$")
+    print("Prix du produit : ", obtenir_prix_produit(machine_distributrice, code_produit), "$")
     
     #calcule de l'argent à rendre
     c = float(obtenir_prix_produit(machine_distributrice, code_produit))
     argent_a_rendre = round(float(montant_fourni) - c, 2)
+    
     time.sleep(.5)
+    
     print(f"Argent à rendre :",argent_a_rendre,"$")
+    print("")
     
     #Appel de la fonction calculer_monnaie pour qu'elle calcule le change à distribuer et sauvegarde la liste de monnaies à rendre
     liste_monnaies_rendues = calculer_monnaie(argent_a_rendre, liste_monnaies_rendues=[])
     
     for i in range(len(liste_monnaies_rendues)):
-        print(f"")
+        if liste_monnaies_rendues[i] > 0:
+            if i == 0:
+                print(liste_monnaies_rendues[i], " x 2.00$" )
+            elif i == 1:
+                print(liste_monnaies_rendues[i], " x 1.00$" )
+            elif i == 2:
+                print(liste_monnaies_rendues[i], " x 0,25$" )
+            elif i == 3:
+                print(liste_monnaies_rendues[i], " x 0,10$" )
+            elif i == 4:
+                print(liste_monnaies_rendues[i], " x 0,05$" )
+    print("")
+    input("Remise des pièces de monnaie en cours...")
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -367,32 +329,10 @@ def remettre_argent(machine_distributrice : dict, code_produit : str, montant_fo
 if __name__ == "__main__" :
     machine_distributrice = {}
     remplir_machine_distributrice(machine_distributrice)
-    
-    # Dans la console, appuyez sur les touches [CTRL] et [C]
-    # pour arrêter cette boucle infinie et, donc, l'exécution
-    # du programme. 
-    i = 0                                           #Desolee, Ryan a touchee
-    while True and i == 0 :     #Desolee, Ryan a touchee
-        i +=1                                   #Desolee, Ryan a touchee 
-        is_payed = True
-        afficher_contenu_machine_distributrice(machine_distributrice)
-        #distribuer_produit(machine_distributrice, code_produit,montant_fourni)
-        #input()
-        # remettre_argent(code_produit, montant_fourni)
-        # afficher_remerciements(machine_distributrice, code_produit)
-       
-        
-        
-        
-        
-        
-    
-    ########################Original############################
-
-code_produit = saisir_code_produit(machine_distributrice)
-montant_fourni = payer_produit(machine_distributrice, code_produit)
-#inserer_argent(machine_distributrice, montant_fourni)
-distribuer_produit(machine_distributrice, code_produit, montant_fourni)
-remettre_argent(machine_distributrice, code_produit, montant_fourni)
-# afficher_remerciements(machine_distributrice, code_produit)
-        ############################################################
+    afficher_contenu_machine_distributrice(machine_distributrice)
+    code_produit = saisir_code_produit(machine_distributrice)
+    #montant_fourni = payer_produit(machine_distributrice, code_produit)
+    montant_fourni = input("DEBUG Insérer argent")
+    distribuer_produit(machine_distributrice, code_produit, montant_fourni)
+    remettre_argent(machine_distributrice, code_produit, montant_fourni)
+    afficher_remerciements(machine_distributrice, code_produit)

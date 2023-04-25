@@ -225,20 +225,30 @@ def afficher_details_produit(machine_distributrice : dict, code_produit : str) :
 #!# Ou est l'Addition des pièces insérées ? +25c : total= 25c , +2$ : total = 2,25$ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
     b = obtenir_nom_produit(machine_distributrice, code_produit)
-    print(f"Vous pouvez proceder au paiement du {b}...")
+    time.sleep(1.5), print(f"Vous pouvez proceder au paiement du : \n{b}...")
     montant_fourni_ = []
-    touche_enfoncee = input("Frapper sur une de ces lettres \n Z:2.00, X:1.00, C:0.25, V:0.10, B:0.05, svp : ")
-    if touche_enfoncee == "Z": 
-        print(f" Somme entree : {MONNAIES_ACCEPTABLES[0]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
-    if touche_enfoncee == "X": 
-        print(f" Somme entree : {MONNAIES_ACCEPTABLES[1]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
-    if touche_enfoncee == "C": 
-        print(f" Somme entree : {MONNAIES_ACCEPTABLES[2]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
-    if touche_enfoncee == "V": 
-        print(f" Somme entree : {MONNAIES_ACCEPTABLES[3]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
-    if touche_enfoncee == "B": 
-        print(f" Somme entree : {MONNAIES_ACCEPTABLES[4]} $"), montant_fourni_.append(MONNAIES_ACCEPTABLES[0])  
-    montant_fourni = montant_fourni_
+    time.sleep(1.5)
+    touche_enfoncee = input("Frapper sur une de ces lettres \n Z:B:2.00, X:1.00, C:0.25, V:0.10, B:0.05, svp : ")
+    if touche_enfoncee == "Z":  
+        touche_enfoncee = MONNAIES_ACCEPTABLES[0]
+        print(f" Somme entree : {touche_enfoncee} $")
+    if touche_enfoncee == "X":  
+        touche_enfoncee = MONNAIES_ACCEPTABLES[1]
+        montant_fourni_.append(touche_enfoncee)
+        print(f" Somme entree : {touche_enfoncee} $")
+    if touche_enfoncee == "C":  
+        touche_enfoncee = MONNAIES_ACCEPTABLES[2]
+        montant_fourni_.append(touche_enfoncee)
+        print(f" Somme entree : {touche_enfoncee} $")
+    if touche_enfoncee == "V":  
+        touche_enfoncee = MONNAIES_ACCEPTABLES[3]
+        montant_fourni_.append(touche_enfoncee)
+        print(f" Somme entree : {touche_enfoncee} $")
+    if touche_enfoncee == "B":  
+        touche_enfoncee = MONNAIES_ACCEPTABLES[4]
+        montant_fourni_.append(touche_enfoncee)
+        print(f" Somme entree : {touche_enfoncee} $")
+        montant_fourni = montant_fourni_
     return montant_fourni
 
 #Ryan

@@ -228,7 +228,7 @@ def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
     time.sleep(1.5), print(f"Vous pouvez proceder au paiement du : \n{b}...")
     montant_fourni_ = []
     time.sleep(1.5)
-    touche_enfoncee = input("Frapper sur une de ces lettres \n Z:B:2.00, X:1.00, C:0.25, V:0.10, B:0.05, svp : ")
+    touche_enfoncee = input("Frapper sur une de ces lettres \n Z:2.00, X:1.00, C:0.25, V:0.10, B:0.05, svp : ")
     if touche_enfoncee == "Z":  
         touche_enfoncee = MONNAIES_ACCEPTABLES[0]
         print(f" Somme entree : {touche_enfoncee} $")
@@ -251,12 +251,29 @@ def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
         montant_fourni = montant_fourni_
     return montant_fourni
 
+def argent(Price: float):
+    c = obtenir_prix_produit(machine_distributrice, code_produit)
+    touche_enfoncee = input("Combien avez-vous mis (Z,X,C,V,B) : ")
+    if touche_enfoncee == "Z" :
+            Price = c - MONNAIES_ACCEPTABLES[0]
+    if touche_enfoncee == "X" :
+            Price = c - MONNAIES_ACCEPTABLES[1]
+    if touche_enfoncee == "C" :
+            Price = c - MONNAIES_ACCEPTABLES[2]
+    if touche_enfoncee == "V" :
+            Price = c - MONNAIES_ACCEPTABLES[3]
+    if touche_enfoncee == "B" :
+            Price = c - MONNAIES_ACCEPTABLES[4]
+    print(f"\n Il vous reste a payer {Price} $")
+    return Price
+
+
 #Ryan
 def payer_produit(machine_distributrice : dict, code_produit : str) :
     c = float(obtenir_prix_produit(machine_distributrice, code_produit))
     montant_fourni = inserer_argent(touche_enfoncee="", Price="", montant_fourni="")
     if not montant_fourni == c :
-        effacer_ecran(), afficher_details_produit(machine_distributrice, code_produit), inserer_argent(touche_enfoncee="", Price="", montant_fourni="")
+        effacer_ecran(), afficher_details_produit(machine_distributrice, code_produit), argent(Price="")
     
 
 
@@ -333,7 +350,7 @@ if __name__ == "__main__" :
     remplir_machine_distributrice(machine_distributrice)
     afficher_contenu_machine_distributrice(machine_distributrice)
     code_produit = saisir_code_produit(machine_distributrice)
-    #montant_fourni = payer_produit(machine_distributrice, code_produit)
+    montant_fourni = payer_produit(machine_distributrice, code_produit)
     montant_fourni = input("DEBUG Insérer argent")
     distribuer_produit(machine_distributrice, code_produit, montant_fourni)
     remettre_argent(machine_distributrice, code_produit, montant_fourni)

@@ -253,18 +253,10 @@ def inserer_argent(touche_enfoncee : str, montant_fourni : float) -> float :
 
 #Ryan
 def payer_produit(machine_distributrice : dict, code_produit : str) :
-    inserer_argent(touche_enfoncee="", montant_fourni="")
     c = float(obtenir_prix_produit(machine_distributrice, code_produit))
-   
-    if float(montant_fourni) < float(c):
-        effacer_ecran(), afficher_details_produit(machine_distributrice, code_produit)
-        print(f"\nMontant inseree : {montant_fourni} $")
-        input(f"Il vous reste {Price} a payer : ")
-    if float(montant_fourni) >= float(c):
-        
-        print("initialisation de la machine...")
-        time.sleep(5)
-    return montant_fourni    
+    montant_fourni = inserer_argent(touche_enfoncee="", Price="", montant_fourni="")
+    if not montant_fourni == c :
+        effacer_ecran(), afficher_details_produit(machine_distributrice, code_produit), inserer_argent(touche_enfoncee="", Price="", montant_fourni="")
     
 
 
